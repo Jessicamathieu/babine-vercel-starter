@@ -10,7 +10,14 @@ Projet prêt à déployer sur Vercel. API routes et webhooks déjà branchés.
 ## Déploiement rapide
 1) **GitHub**: créer un repo et pousser ce dossier.
 2) **Vercel**: Importer depuis GitHub → Build Next.js par défaut.
-3) **Env Vars (Vercel → Project → Settings → Environment Variables)** : copier le contenu de `.env.local` (ci-dessous) **sans** les guillemets.
+3) **Env Vars (Vercel → Project → Settings → Environment Variables)** : copier le contenu de `.env.example` et adapter les valeurs.
+
+## Scripts disponibles
+- `npm run dev` : Démarrer le serveur de développement
+- `npm run build` : Build de production
+- `npm run start` : Démarrer le serveur de production
+- `npm run type-check` : Vérifier les types TypeScript
+- `npm run check-build` : Script complet de vérification du build
 
 ## Webhooks à configurer
 - **Facebook Messenger**: Définir l’URL de vérification et de messages sur :  
@@ -28,4 +35,12 @@ Projet prêt à déployer sur Vercel. API routes et webhooks déjà branchés.
 ---
 
 ## Variables d’environnement
-Voir `.env.local` inclus et adapte si besoin.
+Voir `.env.example` pour la liste complète des variables requises. Copier ce fichier vers `.env.local` et adapter les valeurs selon votre configuration.
+
+### Variables requises :
+- **MESSENGER_VERIFY_TOKEN** : Token de vérification Facebook (défaut: `babine_esthetica_verify_2025`)
+- **MESSENGER_PAGE_TOKEN** : Token d'accès à la page Facebook
+- **TWILIO_ACCOUNT_SID** : SID du compte Twilio
+- **TWILIO_AUTH_TOKEN** : Token d'authentification Twilio
+- **TWILIO_PHONE_NUMBER** : Numéro de téléphone Twilio
+- **GOOGLE_CALENDAR_CREDENTIALS** : Credentials JSON du service account Google

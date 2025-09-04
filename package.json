@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "check-build": "bash scripts/check-build.sh"
   },
   "dependencies": {
     "googleapis": "^132.0.0",
