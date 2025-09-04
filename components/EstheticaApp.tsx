@@ -293,33 +293,33 @@ const EsteticaSpaSystem = () => {
     const lowerMessage = userMessage.toLowerCase();
     
     if (lowerMessage.includes('horaire') || lowerMessage.includes('calendrier')) {
-      return "Je vois que tu regardes l'horaire! Tu veux que je t'aide avec quelque chose de spécifique?";
+      return "Voici l'horaire disponible. Si tu veux des précisions, n'hésite pas à demander.";
     }
-    
+
     if (lowerMessage.includes('obeylia')) {
-      return "Obeylia est libre ou occupée? Je peux t'aider à voir ses disponibilités!";
+      return "Obeylia est disponible selon l'horaire. Dis-moi si tu veux voir ses disponibilités exactes.";
     }
-    
+
     if (lowerMessage.includes('allo') || lowerMessage.includes('salut') || lowerMessage.includes('bonjour')) {
-      return "Allo Jessica! Tout va bien aujourd'hui? Tu as besoin d'aide avec l'horaire ou autre chose?";
+      return "Bonjour Jessica! J'espère que tu vas bien. Je suis là si tu as besoin d'aide.";
     }
-    
+
     if (lowerMessage.includes('rendez-vous') || lowerMessage.includes('rdv')) {
-      return "Parfait! Quel service et pour quand? Je peux t'aider à organiser ça.";
+      return "D'accord, tu peux me dire le service et la date qui t'intéressent, et je vais t'aider avec plaisir.";
     }
-    
+
     if (lowerMessage.includes('lipocavitation') && !lowerMessage.includes('prix')) {
-      return "La lipocavitation, c'est 90 minutes de soin pour sculpter le corps. Entre 6-10 séances généralement.";
+      return "La lipocavitation est un soin doux pour sculpter le corps, généralement en 6 à 10 séances de 90 minutes. Si tu veux plus d'infos, je suis là.";
     }
-    
+
     if (lowerMessage.includes('prix') || lowerMessage.includes('combien')) {
       if (lowerMessage.includes('lipocavitation')) {
-        return "120$ pour 90 minutes.";
+        return "Le prix est de 120$ pour 90 minutes. Si tu veux le prix d'un autre service, dis-le moi.";
       }
-      return "Dis-moi quel service et je te donne le prix!";
+      return "Dis-moi simplement le service qui t'intéresse et je te donnerai le prix avec plaisir.";
     }
-    
-    return "Comment je peux t'aider Jessica? Horaire, clients, services... je suis là! 🤍";
+
+    return "Je suis là pour t'aider, Jessica. Pose-moi ta question quand tu veux, je te répondrai avec douceur.";
   };
 
   // Ajout de la variable d'état pour le widget Babine
