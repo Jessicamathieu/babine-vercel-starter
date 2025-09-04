@@ -576,7 +576,7 @@ const EsteticaSpaSystem = () => {
               <div>
                 <h4 className="font-medium text-gray-800">Configurer Webhook</h4>
                 <div className="text-sm text-gray-600 mt-1">
-                  <p><strong>URL:</strong> <code className="bg-gray-100 px-2 py-1 rounded">https://babine.estheticaspa.com/webhook/messenger</code></p>
+                  <p><strong>URL:</strong> <code className="bg-gray-100 px-2 py-1 rounded">https://babine-vercel-starter.vercel.app/webhook/messenger</code></p>
                   <p><strong>Token:</strong> <code className="bg-gray-100 px-2 py-1 rounded">babine_esthetica_verify_2025</code></p>
                   <p><strong>Événements:</strong> messages, messaging_postbacks</p>
                 </div>
