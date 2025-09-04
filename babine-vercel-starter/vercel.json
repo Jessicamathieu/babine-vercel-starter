@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/webhook/messenger",
+      "destination": "/api/webhook-messenger"
+    },
+    {
+      "source": "/webhook/twilio",
+      "destination": "/api/webhook-twilio"
+    },
+    {
+      "source": "/calendar/sync",
+      "destination": "/api/calendar-sync"
+    }
+  ]
+}
