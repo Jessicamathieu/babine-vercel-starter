@@ -1,0 +1,8 @@
+/* This file requires processing with Tailwind CSS and PostCSS.
+   Make sure your build toolchain is set up to process @tailwind directives. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* If you see "Unknown at rule @tailwind", ensure your build toolchain is set up to use Tailwind CSS and PostCSS.
+   See https://tailwindcss.com/docs/installation for setup instructions. */
