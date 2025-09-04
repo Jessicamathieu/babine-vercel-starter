@@ -94,6 +94,7 @@ const EsteticaSpaSystem = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [showBabine, setShowBabine] = useState(false);
   const [babineMinimized, setBabineMinimized] = useState(true);
+  const [babineHidden, setBabineHidden] = useState(false);
   
   // États Babine
   const [messages, setMessages] = useState([
@@ -320,6 +321,11 @@ const EsteticaSpaSystem = () => {
     
     return "Comment je peux t'aider Jessica? Horaire, clients, services... je suis là! 🤍";
   };
+
+  // Ajout de la variable d'état pour le widget Babine
+  const [showBabineWidget, setShowBabineWidget] = useState(true);
+  const [babineAnimating, setBabineAnimating] = useState(false);
+  const [babineVisible, setBabineVisible] = useState(false);
   
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
@@ -661,6 +667,16 @@ const EsteticaSpaSystem = () => {
     </div>
   );
   
+  function hideBabine(event: React.MouseEvent<HTMLButtonElement>): void {
+    throw new Error('Function not implemented.');
+  }
+
+  function handleBabineClick(event: React.MouseEvent<HTMLButtonElement>): void {
+    throw new Error('Function not implemented.');
+  }
+
+  // Les fonctions handleBabineClick et hideBabine sont maintenant gérées inline par les onClick ci-dessus
+
   // Interface principale
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
@@ -727,7 +743,11 @@ const EsteticaSpaSystem = () => {
           {/* Babine widget interactif */}
           {showBabineWidget && (
             <div
-              onClick={handleBabineClick}
+              onClick={() => {
+                setBabineVisible(true);
+                setShowBabine(true);
+                setBabineMinimized(false);
+              }}
               className={`relative cursor-pointer group ${
                 babineAnimating ? 'animate-bounce' : ''
               }`}
@@ -1041,7 +1061,7 @@ const EsteticaSpaSystem = () => {
                   value={newAppointment.notes}
                   onChange={(e) => setNewAppointment(prev => ({...prev, notes: e.target.value}))}
                   className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent"
-                  rows="2"
+                  rows={2}
                   placeholder="Notes sur le client ou le service..."
                 />
               </div>

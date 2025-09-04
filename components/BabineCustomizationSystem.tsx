@@ -631,7 +631,7 @@ const BabineCustomizationSystem = () => {
                           setHasUnsavedChanges(true);
                         }}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                        rows="3"
+                        rows={3}
                         placeholder="Message d'accueil de Babine..."
                       />
                     </div>
@@ -684,7 +684,7 @@ const BabineCustomizationSystem = () => {
                                 setHasUnsavedChanges(true);
                               }}
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                              rows="2"
+                              rows={2}
                               placeholder={`Réponse pour ${service.label}...`}
                             />
                           </div>
@@ -1054,12 +1054,13 @@ const BabineCustomizationSystem = () => {
                     input.type = 'file';
                     input.accept = '.json';
                     input.onchange = (e) => {
-                      const file = e.target.files[0];
+                      const inputEl = e.target as HTMLInputElement;
+                      const file = inputEl.files && inputEl.files[0];
                       if (file) {
                         const reader = new FileReader();
                         reader.onload = (e) => {
                           try {
-                            const config = JSON.parse(e.target.result);
+                            const config = JSON.parse(e.target?.result as string);
                             setThemeConfig(config.theme || themeConfig);
                             setBrandingConfig(config.branding || brandingConfig);
                             setMessagesConfig(config.messages || messagesConfig);
