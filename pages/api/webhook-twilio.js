@@ -9,6 +9,12 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Vérifier les variables d'environnement
+    if (!process.env.TWILIO_AUTH_TOKEN) {
+      console.error('❌ Variable TWILIO_AUTH_TOKEN manquante');
+      return res.status(500).json({ error: 'Configuration Twilio manquante' });
+    }
+
     // Valider que le webhook vient bien de Twilio
     const signature = req.headers['x-twilio-signature'];
     const isValid = twilio.validateRequest(

@@ -12,16 +12,24 @@ const CALENDAR_CONFIG = {
 
 // Initialiser client Google Calendar
 function getCalendarClient() {
-  const credentials = JSON.parse(process.env.GOOGLE_CALENDAR_CREDENTIALS);
+  if (!process.env.GOOGLE_CALENDAR_CREDENTIALS) {
+    throw new Error('Variable d\'environnement GOOGLE_CALENDAR_CREDENTIALS manquante');
+  }
   
-  const auth = new google.auth.JWT(
-    credentials.client_email,
-    null,
-    credentials.private_key,
-    ['https://www.googleapis.com/auth/calendar']
-  );
+  try {
+    const credentials = JSON.parse(process.env.GOOGLE_CALENDAR_CREDENTIALS);
+    
+    const auth = new google.auth.JWT(
+      credentials.client_email,
+      null,
+      credentials.private_key,
+      ['https://www.googleapis.com/auth/calendar']
+    );
 
-  return google.calendar({ version: 'v3', auth });
+    return google.calendar({ version: 'v3', auth });
+  } catch (error) {
+    throw new Error('Erreur parsing GOOGLE_CALENDAR_CREDENTIALS: ' + error.message);
+  }
 }
 
 export default async function handler(req, res) {
