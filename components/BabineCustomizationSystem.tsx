@@ -14,6 +14,7 @@ const BabineCustomizationSystem = () => {
   const [activeTab, setActiveTab] = useState('theme');
   const [previewDevice, setPreviewDevice] = useState('desktop');
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [lastBabineResponse, setLastBabineResponse] = useState('');
   
   // 🎯 CONFIGURATION THÈME OPTIMISÉE
   const [themeConfig, setThemeConfig] = useState({
@@ -188,7 +189,20 @@ const BabineCustomizationSystem = () => {
     }
   }, [themeConfig, brandingConfig, messagesConfig, advancedConfig]);
 
-  // 🎯 COMPOSANT PREVIEW OPTIMISÉ
+  // � STYLES OPTIMISÉS AVEC USEMEMO
+  const gradientStyle = useMemo(() => ({
+    background: themeConfig.gradientStyle === 'elegant'
+      ? `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
+      : `linear-gradient(45deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
+  }), [themeConfig.gradientStyle, themeConfig.primaryColor, themeConfig.secondaryColor]);
+
+  const messageStyle = useMemo(() => ({
+    backgroundColor: `${themeConfig.primaryColor}15`,
+    borderColor: `${themeConfig.primaryColor}30`,
+    color: themeConfig.textColor
+  }), [themeConfig.primaryColor, themeConfig.textColor]);
+
+  // �🎯 COMPOSANT PREVIEW OPTIMISÉ
   const PreviewComponent = useMemo(() => {
     return (
       <div 
@@ -203,11 +217,7 @@ const BabineCustomizationSystem = () => {
         {/* Header Preview */}
         <div 
           className="px-6 py-6 text-white relative overflow-hidden"
-          style={{
-            background: themeConfig.gradientStyle === 'elegant' 
-              ? `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
-              : `linear-gradient(45deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
-          }}
+          style={gradientStyle}
         >
           <div className="flex items-center space-x-4 relative z-10">
             <div 
@@ -227,25 +237,8 @@ const BabineCustomizationSystem = () => {
           <div className="absolute -right-2 -bottom-2 w-12 h-12 rounded-full bg-white/5"></div>
         </div>
 
-        {/* Chat Preview Intelligent */}
+        {/* Chat Preview Intelligent - Optimisé */}
         <div className="p-5 space-y-4">
-          <div className="flex justify-start">
-            <div 
-              className="max-w-xs px-4 py-3 rounded-2xl text-sm backdrop-blur border"
-              style={{ 
-                backgroundColor: `${themeConfig.primaryColor}15`,
-                borderColor: `${themeConfig.primaryColor}30`,
-                color: themeConfig.textColor
-              }}
-            >
-              <div className="flex items-center space-x-2 mb-1">
-                <span className="text-lg">🌸</span>
-                <span className="font-medium text-xs opacity-75">Babine</span>
-              </div>
-              {messagesConfig.welcomeMessage}
-            </div>
-          </div>
-          
           <div className="flex justify-end">
             <div 
               className="max-w-xs px-4 py-3 rounded-2xl text-sm text-white shadow-lg"
@@ -260,11 +253,7 @@ const BabineCustomizationSystem = () => {
           <div className="flex justify-start">
             <div 
               className="max-w-xs px-4 py-3 rounded-2xl text-sm backdrop-blur border"
-              style={{ 
-                backgroundColor: `${themeConfig.primaryColor}15`,
-                borderColor: `${themeConfig.primaryColor}30`,
-                color: themeConfig.textColor
-              }}
+              style={messageStyle}
             >
               <div className="flex items-center space-x-2 mb-1">
                 <span className="text-lg">💪</span>
