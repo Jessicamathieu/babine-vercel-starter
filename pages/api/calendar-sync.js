@@ -7,7 +7,7 @@ const { google } = require('googleapis');
 const CALENDAR_CONFIG = {
   serviceAccountEmail: 'babine-assistante-esthetica@babine-assistante-esthetica.iam.gserviceaccount.com',
   calendarId: 'primary', // Calendrier principal Jessica
-  obeyliaCalendarId: 'obeylia@estheticaspa.com' // Calendrier Obeylia (à créer)
+  obeyliaCalendarId: 'obeyliagilbert@hotmail.com' // Calendrier partagé Obeylia
 };
 
 // Initialiser client Google Calendar
