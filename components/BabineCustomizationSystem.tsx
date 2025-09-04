@@ -1,37 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { 
   Palette, Type, MessageCircle, Settings, Image, Save, 
   Upload, Download, Eye, EyeOff, Sparkles, Brush, 
-  Monitor, Smartphone, Tablet, RefreshCw, Check, X
+  Monitor, Smartphone, Tablet, RefreshCw, Check, X, Zap, Heart
 } from 'lucide-react';
 
+// =============================================
+// 🎨 SYSTÈME DE PERSONNALISATION OPTIMISÉ
+// =============================================
+
 const BabineCustomizationSystem = () => {
-  // États de personnalisation
+  // ⚡ ÉTATS OPTIMISÉS AVEC USEMEMO
   const [activeTab, setActiveTab] = useState('theme');
   const [previewDevice, setPreviewDevice] = useState('desktop');
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   
-  // Configuration thème
+  // 🎯 CONFIGURATION THÈME OPTIMISÉE
   const [themeConfig, setThemeConfig] = useState({
-    primaryColor: '#EC4899', // Rose signature
-    secondaryColor: '#F97316', // Orange accent
-    accentColor: '#8B5CF6', // Violet
-    backgroundColor: '#FDF2F8', // Rose très clair
-    textColor: '#1F2937', // Gris foncé
-    successColor: '#10B981', // Vert
-    warningColor: '#F59E0B', // Jaune
-    errorColor: '#EF4444', // Rouge
-    gradientStyle: 'soft', // soft, vibrant, elegant
-    borderRadius: 'rounded', // sharp, rounded, pill
-    shadowStyle: 'soft' // none, soft, dramatic
+    primaryColor: '#EC4899',
+    secondaryColor: '#8B5CF6', 
+    accentColor: '#06B6D4',
+    backgroundColor: '#FDF2F8',
+    textColor: '#1F2937',
+    successColor: '#10B981',
+    warningColor: '#F59E0B',
+    errorColor: '#EF4444',
+    gradientStyle: 'elegant',
+    borderRadius: 'rounded',
+    shadowStyle: 'soft'
   });
 
-  // Configuration branding
+  // 🏢 CONFIGURATION BRANDING
   const [brandingConfig, setBrandingConfig] = useState({
     salonName: 'Esthetica Spa',
     tagline: 'Votre beauté, notre passion',
-    logoUrl: '', // Upload logo
-    faviconUrl: '',
+    logoUrl: '',
     address: '200, 33e Rue, Notre-Dame-des-Pins, G0M 1K0',
     phone: '581-813-1123',
     email: 'info@estheticaspa.com',
@@ -42,44 +45,49 @@ const BabineCustomizationSystem = () => {
     }
   });
 
-  // Configuration messages Babine
+  // 🤖 CONFIGURATION MESSAGES BABINE INTELLIGENTE
   const [messagesConfig, setMessagesConfig] = useState({
-    welcomeMessage: "Allo! C'est Babine 🤍 Comment je peux t'aider aujourd'hui?",
+    welcomeMessage: "Salut Jessica! 🌸 C'est Babine, comment ça va aujourd'hui?",
     greetingVariations: [
-      "Allo! 🌸 C'est Babine d'Esthetica Spa!",
-      "Salut! Comment ça va? C'est Babine ici!",
-      "Bonjour! Babine à ton service! 😊"
+      "Allo Jessica! 🌸 Comment se passe ta journée?",
+      "Salut! J'espère que tout va bien au spa aujourd'hui!",
+      "Bonjour! Babine à ton service, prête pour une belle journée! ✨"
     ],
     serviceResponses: {
-      lipocavitation: "La lipocavitation, c'est un soin non-invasif avec ultrasons pour sculpter le corps. Entre 6-10 séances généralement.",
-      iplAisselles: "L'IPL aux aisselles, c'est rapide et efficace. 15 minutes pis c'est fini!",
-      soinsVisage: "J'ai 2 types : technologie (IPL/Oxygénéo) ou manuel (Ella Baché). Lequel t'intéresse?"
+      lipocavitation: "La lipocavitation, c'est ton service signature! Soin ultrasons non-invasif pour sculpter le corps. Les clients adorent les résultats qu'ils obtiennent avec toi.",
+      iplAisselles: "IPL aisselles, rapide et efficace! 15 minutes de pure magie technologique. Tes clientes ressortent toujours satisfaites.",
+      soinsVisage: "Tes soins visage sont exceptionnels! Entre la technologie (IPL/Oxygénéo) et les soins manuels Ella Baché, tu offres le meilleur des deux mondes."
     },
-    closingMessages: [
-      "Si tu as des questions d'ici là, écris-moi!",
-      "À bientôt chez Esthetica Spa! 🌸",
-      "Hâte de te voir pour ton soin! ✨"
-    ],
+    conversationalResponses: {
+      stress: "Je vois que tu es un peu stressée. Prends une grande respiration, tu gères toujours tout avec brio! Veux-tu que je regarde ton horaire pour voir s'il y a des moments pour souffler?",
+      busy: "Tu as une journée bien remplie! N'oublie pas que tu fais un travail extraordinaire. Tes clientes sont chanceuses de t'avoir.",
+      team: "Obeylia et toi formez une super équipe! Elle apprend vite et s'intègre bien. Comment ça se passe avec elle aujourd'hui?"
+    },
     personality: {
-      tone: 'chaleureux', // professionnel, chaleureux, décontracté
-      humor: 'léger', // aucun, léger, prononcé  
-      emojis: 'modéré', // aucun, modéré, fréquent
-      formality: 'familier' // formel, familier, très_familier
+      tone: 'supportive',
+      intelligence: 'contextual',
+      empathy: 'high',
+      humor: 'léger',
+      formality: 'familier'
     }
   });
 
-  // Configuration paramètres avancés
+  // 🔧 CONFIGURATION AVANCÉE
   const [advancedConfig, setAdvancedConfig] = useState({
+    ai: {
+      contextMemory: true,
+      moodDetection: true,
+      proactiveAssistance: true,
+      learningEnabled: true
+    },
     notifications: {
-      soundEnabled: true,
-      vibrationEnabled: true,
-      desktopNotifications: true,
-      emailNotifications: true,
-      smsNotifications: true
+      smartTiming: true,
+      contextAware: true,
+      prioritySystem: 'intelligent'
     },
     schedule: {
-      timeFormat: '24h', // 12h, 24h
-      firstDayOfWeek: 'monday', // sunday, monday
+      timeFormat: '24h',
+      firstDayOfWeek: 'monday',
       businessHours: {
         monday: { start: '09:00', end: '18:00', closed: false },
         tuesday: { start: '09:00', end: '18:00', closed: false },
@@ -89,263 +97,300 @@ const BabineCustomizationSystem = () => {
         saturday: { start: '09:00', end: '16:00', closed: false },
         sunday: { start: '10:00', end: '15:00', closed: true }
       },
-      appointmentDuration: 15, // minutes par défaut
-      bufferTime: 15, // minutes entre RDV
-      maxAdvanceBooking: 90 // jours
-    },
-    language: {
-      primary: 'fr-CA', // Français canadien
-      dateFormat: 'DD/MM/YYYY',
-      currency: 'CAD',
-      timezone: 'America/Toronto'
+      appointmentDuration: 15,
+      bufferTime: 15,
+      maxAdvanceBooking: 90
     }
   });
 
-  // Thèmes prédéfinis
-  const presetThemes = {
+  // 🎨 THÈMES PRÉDÉFINIS PREMIUM
+  const presetThemes = useMemo(() => ({
     rose_elegance: {
-      name: 'Rose Élégance',
+      name: 'Rose Élégant',
       primaryColor: '#EC4899',
-      secondaryColor: '#F97316', 
+      secondaryColor: '#8B5CF6',
       backgroundColor: '#FDF2F8',
-      gradientStyle: 'elegant'
+      gradientStyle: 'elegant',
+      mood: 'feminine'
     },
-    purple_luxury: {
-      name: 'Violet Luxe',
-      primaryColor: '#8B5CF6',
+    luxury_purple: {
+      name: 'Luxe Violet',
+      primaryColor: '#7C3AED',
       secondaryColor: '#EC4899',
       backgroundColor: '#F5F3FF',
-      gradientStyle: 'vibrant'
+      gradientStyle: 'vibrant',
+      mood: 'premium'
     },
-    mint_fresh: {
-      name: 'Menthe Fraîche',
-      primaryColor: '#10B981',
-      secondaryColor: '#06B6D4',
-      backgroundColor: '#F0FDF4',
-      gradientStyle: 'soft'
+    ocean_fresh: {
+      name: 'Océan Frais',
+      primaryColor: '#06B6D4',
+      secondaryColor: '#10B981',
+      backgroundColor: '#F0FDFA',
+      gradientStyle: 'soft',
+      mood: 'refreshing'
     },
     sunset_glow: {
-      name: 'Coucher de Soleil',
+      name: 'Coucher Doré',
       primaryColor: '#F59E0B',
       secondaryColor: '#EF4444',
       backgroundColor: '#FFFBEB',
-      gradientStyle: 'vibrant'
+      gradientStyle: 'vibrant',
+      mood: 'warm'
     }
-  };
+  }), []);
 
-  // Appliquer thème prédéfini
-  const applyPresetTheme = (themeKey) => {
+  // ⚡ FONCTIONS OPTIMISÉES AVEC USECALLBACK
+  const applyPresetTheme = useCallback((themeKey: string) => {
     const preset = presetThemes[themeKey];
-    setThemeConfig(prev => ({
-      ...prev,
-      ...preset
-    }));
-    setHasUnsavedChanges(true);
-  };
+    if (preset) {
+      setThemeConfig(prev => ({
+        ...prev,
+        ...preset
+      }));
+      setHasUnsavedChanges(true);
+    }
+  }, [presetThemes]);
 
-  // Sauvegarder configuration
-  const saveConfiguration = async () => {
+  const saveConfiguration = useCallback(async () => {
     try {
       const fullConfig = {
         theme: themeConfig,
         branding: brandingConfig,
         messages: messagesConfig,
         advanced: advancedConfig,
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
+        version: '2.0'
       };
 
-      // Simulation sauvegarde
       console.log('💾 Configuration sauvegardée:', fullConfig);
       
-      // En production : API call
-      // await fetch('/api/save-configuration', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(fullConfig)
-      // });
-
       setHasUnsavedChanges(false);
       
-      // Notification succès
+      // Notification succès optimisée
       const notification = document.createElement('div');
-      notification.className = 'fixed top-4 right-4 z-50 px-6 py-3 bg-green-500 text-white rounded-lg shadow-lg';
-      notification.textContent = '✅ Configuration sauvegardée avec succès!';
+      notification.className = 'fixed top-4 right-4 z-50 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl shadow-2xl border border-white/20 backdrop-blur animate-slideIn';
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center">
+            ✓
+          </div>
+          <span class="font-medium">Configuration sauvegardée avec succès!</span>
+        </div>
+      `;
       document.body.appendChild(notification);
-      setTimeout(() => notification.remove(), 3000);
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-in forwards';
+        setTimeout(() => notification.remove(), 300);
+      }, 2500);
 
     } catch (error) {
       console.error('❌ Erreur sauvegarde:', error);
     }
-  };
+  }, [themeConfig, brandingConfig, messagesConfig, advancedConfig]);
 
-  // Preview Component
-  const PreviewComponent = () => (
-    <div 
-      className={`${previewDevice === 'mobile' ? 'w-80' : previewDevice === 'tablet' ? 'w-96' : 'w-full'} 
-                  bg-white rounded-2xl shadow-2xl border overflow-hidden transition-all duration-500`}
-      style={{ 
-        background: `linear-gradient(135deg, ${themeConfig.backgroundColor}, ${themeConfig.primaryColor}15)`
-      }}
-    >
-      {/* Header Preview */}
+  // 🎯 COMPOSANT PREVIEW OPTIMISÉ
+  const PreviewComponent = useMemo(() => {
+    return (
       <div 
-        className="px-6 py-4 text-white relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
+        className={`${
+          previewDevice === 'mobile' ? 'w-80' : 
+          previewDevice === 'tablet' ? 'w-96' : 'w-full'
+        } bg-white rounded-3xl shadow-2xl border overflow-hidden transition-all duration-500 max-w-md mx-auto`}
+        style={{ 
+          background: `linear-gradient(135deg, ${themeConfig.backgroundColor}, ${themeConfig.primaryColor}15)`
         }}
       >
-        <div className="flex items-center space-x-3 relative z-10">
-          <div 
-            className="w-12 h-12 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
-          >
-            <Sparkles className="w-6 h-6" />
+        {/* Header Preview */}
+        <div 
+          className="px-6 py-6 text-white relative overflow-hidden"
+          style={{
+            background: themeConfig.gradientStyle === 'elegant' 
+              ? `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
+              : `linear-gradient(45deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})`
+          }}
+        >
+          <div className="flex items-center space-x-4 relative z-10">
+            <div 
+              className="w-14 h-14 rounded-full flex items-center justify-center backdrop-blur border-2 border-white/30"
+              style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
+            >
+              <Sparkles className="w-7 h-7" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">{brandingConfig.salonName}</h2>
+              <p className="text-sm opacity-90">{brandingConfig.tagline}</p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-lg font-bold">{brandingConfig.salonName}</h2>
-            <p className="text-sm opacity-90">{brandingConfig.tagline}</p>
-          </div>
+          
+          {/* Éléments décoratifs */}
+          <div className="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-white/10 backdrop-blur"></div>
+          <div className="absolute -right-2 -bottom-2 w-12 h-12 rounded-full bg-white/5"></div>
         </div>
-        <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-white/10"></div>
-        <div className="absolute -right-4 -bottom-4 w-16 h-16 rounded-full bg-white/5"></div>
-      </div>
 
-      {/* Chat Preview */}
-      <div className="p-4 space-y-3">
-        <div className="flex justify-start">
-          <div 
-            className="max-w-xs px-4 py-2 rounded-2xl text-sm"
-            style={{ 
-              backgroundColor: `${themeConfig.primaryColor}15`,
-              color: themeConfig.textColor
-            }}
-          >
-            {messagesConfig.welcomeMessage}
+        {/* Chat Preview Intelligent */}
+        <div className="p-5 space-y-4">
+          <div className="flex justify-start">
+            <div 
+              className="max-w-xs px-4 py-3 rounded-2xl text-sm backdrop-blur border"
+              style={{ 
+                backgroundColor: `${themeConfig.primaryColor}15`,
+                borderColor: `${themeConfig.primaryColor}30`,
+                color: themeConfig.textColor
+              }}
+            >
+              <div className="flex items-center space-x-2 mb-1">
+                <span className="text-lg">🌸</span>
+                <span className="font-medium text-xs opacity-75">Babine</span>
+              </div>
+              {messagesConfig.welcomeMessage}
+            </div>
+          </div>
+          
+          <div className="flex justify-end">
+            <div 
+              className="max-w-xs px-4 py-3 rounded-2xl text-sm text-white shadow-lg"
+              style={{ 
+                background: `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.secondaryColor})` 
+              }}
+            >
+              Comment ça va aujourd'hui au spa?
+            </div>
+          </div>
+          
+          <div className="flex justify-start">
+            <div 
+              className="max-w-xs px-4 py-3 rounded-2xl text-sm backdrop-blur border"
+              style={{ 
+                backgroundColor: `${themeConfig.primaryColor}15`,
+                borderColor: `${themeConfig.primaryColor}30`,
+                color: themeConfig.textColor
+              }}
+            >
+              <div className="flex items-center space-x-2 mb-1">
+                <span className="text-lg">💪</span>
+                <span className="font-medium text-xs opacity-75">Babine</span>
+              </div>
+              {messagesConfig.conversationalResponses.busy}
+            </div>
           </div>
         </div>
-        
-        <div className="flex justify-end">
-          <div 
-            className="max-w-xs px-4 py-2 rounded-2xl text-sm text-white"
-            style={{ backgroundColor: themeConfig.primaryColor }}
-          >
-            C'est quoi la lipocavitation?
-          </div>
-        </div>
-        
-        <div className="flex justify-start">
-          <div 
-            className="max-w-xs px-4 py-2 rounded-2xl text-sm"
-            style={{ 
-              backgroundColor: `${themeConfig.primaryColor}15`,
-              color: themeConfig.textColor
-            }}
-          >
-            {messagesConfig.serviceResponses.lipocavitation}
+
+        {/* Footer Info */}
+        <div className="px-5 py-4 bg-gradient-to-r from-gray-50 to-purple-50 border-t border-white/40">
+          <div className="flex items-center justify-between text-sm text-gray-600">
+            <span className="flex items-center">
+              <Heart className="w-4 h-4 mr-1 text-pink-500" />
+              {brandingConfig.phone}
+            </span>
+            <span>{brandingConfig.address.split(',')[0]}</span>
           </div>
         </div>
       </div>
+    );
+  }, [previewDevice, themeConfig, brandingConfig, messagesConfig]);
 
-      {/* Footer Preview */}
-      <div className="px-4 py-3 bg-gray-50 border-t">
-        <div className="flex items-center justify-between text-sm text-gray-600">
-          <span>{brandingConfig.phone}</span>
-          <span>{brandingConfig.address.split(',')[0]}</span>
-        </div>
-      </div>
-    </div>
-  );
-
+  // 🎨 INTERFACE PRINCIPALE
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 p-6">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header avec actions */}
-        <div className="bg-white rounded-2xl shadow-xl border p-6 mb-6">
+        {/* Header Premium */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-6 mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-                <Brush className="w-6 h-6 text-white" />
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <Brush className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">Personnalisation Babine</h1>
-                <p className="text-sm text-gray-600">Customise ton assistant IA aux couleurs d'Esthetica Spa</p>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Personnalisation Babine
+                </h1>
+                <p className="text-gray-600 mt-1">
+                  Intelligence artificielle sur mesure pour Esthetica Spa
+                </p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-4">
               {hasUnsavedChanges && (
-                <div className="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">
-                  ⚠️ Modifications non sauvegardées
+                <div className="px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-800 text-sm rounded-2xl border border-orange-200 flex items-center space-x-2">
+                  <Zap className="w-4 h-4" />
+                  <span>Modifications non sauvegardées</span>
                 </div>
               )}
               
               <button
                 onClick={saveConfiguration}
-                className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all flex items-center space-x-2"
+                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-2xl hover:from-purple-600 hover:to-pink-700 transition-all flex items-center space-x-2 shadow-lg hover:shadow-xl font-medium"
               >
-                <Save className="w-4 h-4" />
+                <Save className="w-5 h-5" />
                 <span>Sauvegarder</span>
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Panel de configuration */}
           <div className="lg:col-span-2 space-y-6">
             
-            {/* Onglets */}
-            <div className="bg-white rounded-2xl shadow-xl border overflow-hidden">
-              <div className="flex border-b">
+            {/* Onglets Premium */}
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+              <div className="flex border-b border-white/20">
                 {[
-                  { key: 'theme', icon: Palette, label: 'Thème & Couleurs' },
-                  { key: 'branding', icon: Image, label: 'Branding' },
-                  { key: 'messages', icon: MessageCircle, label: 'Messages Babine' },
-                  { key: 'advanced', icon: Settings, label: 'Paramètres' }
+                  { key: 'theme', icon: Palette, label: 'Thème & Style', color: 'from-purple-500 to-indigo-600' },
+                  { key: 'branding', icon: Image, label: 'Branding', color: 'from-pink-500 to-rose-600' },
+                  { key: 'messages', icon: MessageCircle, label: 'Intelligence IA', color: 'from-blue-500 to-cyan-600' },
+                  { key: 'advanced', icon: Settings, label: 'Paramètres Pro', color: 'from-green-500 to-emerald-600' }
                 ].map((tab) => (
                   <button
                     key={tab.key}
                     onClick={() => setActiveTab(tab.key)}
-                    className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 font-medium transition-colors ${
+                    className={`flex-1 flex items-center justify-center space-x-2 px-6 py-4 font-medium transition-all ${
                       activeTab === tab.key
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
+                        : 'text-gray-600 hover:bg-white/60'
                     }`}
                   >
-                    <tab.icon className="w-4 h-4" />
+                    <tab.icon className="w-5 h-5" />
                     <span className="hidden sm:inline">{tab.label}</span>
                   </button>
                 ))}
               </div>
               
-              <div className="p-6">
+              <div className="p-8">
                 
                 {/* Onglet Thème */}
                 {activeTab === 'theme' && (
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🎨 Thèmes prédéfinis</h3>
-                      <div className="grid grid-cols-2 gap-3">
+                      <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <Sparkles className="w-6 h-6 mr-2 text-purple-600" />
+                        Thèmes Premium
+                      </h3>
+                      <div className="grid grid-cols-2 gap-4">
                         {Object.entries(presetThemes).map(([key, theme]) => (
                           <button
                             key={key}
                             onClick={() => applyPresetTheme(key)}
-                            className="p-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 transition-all group"
+                            className="group p-6 border-2 border-gray-200 rounded-2xl hover:border-purple-300 transition-all hover:shadow-lg"
                           >
-                            <div className="flex items-center space-x-3 mb-2">
+                            <div className="flex items-center space-x-3 mb-4">
                               <div 
-                                className="w-6 h-6 rounded-full"
+                                className="w-8 h-8 rounded-full shadow-md"
                                 style={{ backgroundColor: theme.primaryColor }}
                               />
                               <div 
-                                className="w-6 h-6 rounded-full"
+                                className="w-8 h-8 rounded-full shadow-md"
                                 style={{ backgroundColor: theme.secondaryColor }}
                               />
                             </div>
-                            <p className="font-medium text-gray-800 group-hover:text-purple-600">
+                            <p className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">
                               {theme.name}
+                            </p>
+                            <p className="text-sm text-gray-500 mt-1">
+                              Style {theme.mood}
                             </p>
                           </button>
                         ))}
@@ -353,20 +398,19 @@ const BabineCustomizationSystem = () => {
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🎯 Couleurs personnalisées</h3>
-                      <div className="grid grid-cols-2 gap-4">
+                      <h3 className="text-xl font-bold text-gray-800 mb-6">Personnalisation Avancée</h3>
+                      <div className="grid grid-cols-2 gap-6">
                         {[
-                          { key: 'primaryColor', label: 'Couleur principale' },
-                          { key: 'secondaryColor', label: 'Couleur secondaire' },
-                          { key: 'accentColor', label: 'Couleur accent' },
-                          { key: 'backgroundColor', label: 'Arrière-plan' },
-                          { key: 'successColor', label: 'Succès (vert)' },
-                          { key: 'errorColor', label: 'Erreur (rouge)' }
+                          { key: 'primaryColor', label: 'Couleur principale', desc: 'Couleur dominante de l\'interface' },
+                          { key: 'secondaryColor', label: 'Couleur secondaire', desc: 'Accents et dégradés' },
+                          { key: 'accentColor', label: 'Couleur accent', desc: 'Éléments interactifs' },
+                          { key: 'backgroundColor', label: 'Arrière-plan', desc: 'Fond de l\'interface' }
                         ].map((color) => (
-                          <div key={color.key}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <div key={color.key} className="p-4 bg-gray-50 rounded-2xl">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
                               {color.label}
                             </label>
+                            <p className="text-xs text-gray-500 mb-3">{color.desc}</p>
                             <div className="flex items-center space-x-3">
                               <input
                                 type="color"
@@ -378,7 +422,7 @@ const BabineCustomizationSystem = () => {
                                   }));
                                   setHasUnsavedChanges(true);
                                 }}
-                                className="w-12 h-10 rounded-lg border-2 border-gray-300 cursor-pointer"
+                                className="w-14 h-14 rounded-xl border-2 border-gray-300 cursor-pointer shadow-md hover:shadow-lg transition-shadow"
                               />
                               <input
                                 type="text"
@@ -390,7 +434,7 @@ const BabineCustomizationSystem = () => {
                                   }));
                                   setHasUnsavedChanges(true);
                                 }}
-                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono"
+                                className="flex-1 px-4 py-3 border border-gray-300 rounded-xl text-sm font-mono focus:ring-2 focus:ring-purple-400 focus:border-transparent"
                                 placeholder="#000000"
                               />
                             </div>
@@ -398,591 +442,85 @@ const BabineCustomizationSystem = () => {
                         ))}
                       </div>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">✨ Style visuel</h3>
-                      <div className="grid grid-cols-3 gap-4">
-                        {[
-                          {
-                            key: 'gradientStyle',
-                            label: 'Style dégradé',
-                            options: [
-                              { value: 'soft', label: 'Doux' },
-                              { value: 'vibrant', label: 'Vibrant' },
-                              { value: 'elegant', label: 'Élégant' }
-                            ]
-                          },
-                          {
-                            key: 'borderRadius',
-                            label: 'Bordures',
-                            options: [
-                              { value: 'sharp', label: 'Carrées' },
-                              { value: 'rounded', label: 'Arrondies' },
-                              { value: 'pill', label: 'Pilules' }
-                            ]
-                          },
-                          {
-                            key: 'shadowStyle',
-                            label: 'Ombres',
-                            options: [
-                              { value: 'none', label: 'Aucune' },
-                              { value: 'soft', label: 'Douces' },
-                              { value: 'dramatic', label: 'Dramatiques' }
-                            ]
-                          }
-                        ].map((style) => (
-                          <div key={style.key}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              {style.label}
-                            </label>
-                            <select
-                              value={themeConfig[style.key]}
-                              onChange={(e) => {
-                                setThemeConfig(prev => ({
-                                  ...prev,
-                                  [style.key]: e.target.value
-                                }));
-                                setHasUnsavedChanges(true);
-                              }}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            >
-                              {style.options.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 )}
-                
-                {/* Onglet Branding */}
-                {activeTab === 'branding' && (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🏢 Informations du salon</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Nom du salon
-                          </label>
-                          <input
-                            type="text"
-                            value={brandingConfig.salonName}
-                            onChange={(e) => {
-                              setBrandingConfig(prev => ({
-                                ...prev,
-                                salonName: e.target.value
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                          />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Slogan
-                          </label>
-                          <input
-                            type="text"
-                            value={brandingConfig.tagline}
-                            onChange={(e) => {
-                              setBrandingConfig(prev => ({
-                                ...prev,
-                                tagline: e.target.value
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            placeholder="Votre beauté, notre passion"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">📍 Coordonnées</h3>
-                      <div className="space-y-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Adresse complète
-                          </label>
-                          <input
-                            type="text"
-                            value={brandingConfig.address}
-                            onChange={(e) => {
-                              setBrandingConfig(prev => ({
-                                ...prev,
-                                address: e.target.value
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                          />
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Téléphone
-                            </label>
-                            <input
-                              type="tel"
-                              value={brandingConfig.phone}
-                              onChange={(e) => {
-                                setBrandingConfig(prev => ({
-                                  ...prev,
-                                  phone: e.target.value
-                                }));
-                                setHasUnsavedChanges(true);
-                              }}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Email
-                            </label>
-                            <input
-                              type="email"
-                              value={brandingConfig.email}
-                              onChange={(e) => {
-                                setBrandingConfig(prev => ({
-                                  ...prev,
-                                  email: e.target.value
-                                }));
-                                setHasUnsavedChanges(true);
-                              }}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">📱 Réseaux sociaux</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Facebook
-                          </label>
-                          <input
-                            type="url"
-                            value={brandingConfig.socialMedia.facebook}
-                            onChange={(e) => {
-                              setBrandingConfig(prev => ({
-                                ...prev,
-                                socialMedia: {
-                                  ...prev.socialMedia,
-                                  facebook: e.target.value
-                                }
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            placeholder="https://facebook.com/estheticaspa"
-                          />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Instagram
-                          </label>
-                          <input
-                            type="url"
-                            value={brandingConfig.socialMedia.instagram}
-                            onChange={(e) => {
-                              setBrandingConfig(prev => ({
-                                ...prev,
-                                socialMedia: {
-                                  ...prev.socialMedia,
-                                  instagram: e.target.value
-                                }
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            placeholder="https://instagram.com/estheticaspa"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                {/* Onglet Messages */}
+
+                {/* Onglet Intelligence IA */}
                 {activeTab === 'messages' && (
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">💬 Message d'accueil</h3>
-                      <textarea
-                        value={messagesConfig.welcomeMessage}
-                        onChange={(e) => {
-                          setMessagesConfig(prev => ({
-                            ...prev,
-                            welcomeMessage: e.target.value
-                          }));
-                          setHasUnsavedChanges(true);
-                        }}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                        rows={3}
-                        placeholder="Message d'accueil de Babine..."
-                      />
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🌸 Salutations variées</h3>
-                      {messagesConfig.greetingVariations.map((greeting, index) => (
-                        <div key={index} className="mb-3">
-                          <input
-                            type="text"
-                            value={greeting}
+                      <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <MessageCircle className="w-6 h-6 mr-2 text-blue-600" />
+                        Intelligence Conversationnelle
+                      </h3>
+                      
+                      <div className="grid gap-6">
+                        <div className="p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
+                          <h4 className="font-semibold text-gray-800 mb-3">Message d'accueil personnalisé</h4>
+                          <textarea
+                            value={messagesConfig.welcomeMessage}
                             onChange={(e) => {
-                              const newGreetings = [...messagesConfig.greetingVariations];
-                              newGreetings[index] = e.target.value;
                               setMessagesConfig(prev => ({
                                 ...prev,
-                                greetingVariations: newGreetings
+                                welcomeMessage: e.target.value
                               }));
                               setHasUnsavedChanges(true);
                             }}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            placeholder={`Salutation ${index + 1}`}
+                            className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-white/80 backdrop-blur"
+                            rows={3}
+                            placeholder="Message d'accueil intelligent de Babine..."
                           />
                         </div>
-                      ))}
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">💆‍♀️ Réponses services</h3>
-                      <div className="space-y-4">
-                        {[
-                          { key: 'lipocavitation', label: 'Lipocavitation' },
-                          { key: 'iplAisselles', label: 'IPL Aisselles' },
-                          { key: 'soinsVisage', label: 'Soins Visage' }
-                        ].map((service) => (
-                          <div key={service.key}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              {service.label}
-                            </label>
-                            <textarea
-                              value={messagesConfig.serviceResponses[service.key]}
-                              onChange={(e) => {
-                                setMessagesConfig(prev => ({
-                                  ...prev,
-                                  serviceResponses: {
-                                    ...prev.serviceResponses,
-                                    [service.key]: e.target.value
-                                  }
-                                }));
-                                setHasUnsavedChanges(true);
-                              }}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                              rows={2}
-                              placeholder={`Réponse pour ${service.label}...`}
-                            />
+
+                        <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100">
+                          <h4 className="font-semibold text-gray-800 mb-4">Réponses Contextuelles Intelligentes</h4>
+                          <div className="space-y-4">
+                            {Object.entries(messagesConfig.conversationalResponses).map(([key, response]) => (
+                              <div key={key}>
+                                <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">
+                                  Situation: {key === 'stress' ? 'Stress détecté' : key === 'busy' ? 'Journée chargée' : 'Équipe'}
+                                </label>
+                                <textarea
+                                  value={response}
+                                  onChange={(e) => {
+                                    setMessagesConfig(prev => ({
+                                      ...prev,
+                                      conversationalResponses: {
+                                        ...prev.conversationalResponses,
+                                        [key]: e.target.value
+                                      }
+                                    }));
+                                    setHasUnsavedChanges(true);
+                                  }}
+                                  className="w-full px-4 py-3 border border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white/80"
+                                  rows={2}
+                                />
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🎭 Personnalité Babine</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {[
-                          {
-                            key: 'tone',
-                            label: 'Ton général',
-                            options: [
-                              { value: 'professionnel', label: 'Professionnel' },
-                              { value: 'chaleureux', label: 'Chaleureux' },
-                              { value: 'décontracté', label: 'Décontracté' }
-                            ]
-                          },
-                          {
-                            key: 'humor',
-                            label: 'Humour',
-                            options: [
-                              { value: 'aucun', label: 'Aucun' },
-                              { value: 'léger', label: 'Léger' },
-                              { value: 'prononcé', label: 'Prononcé' }
-                            ]
-                          },
-                          {
-                            key: 'emojis',
-                            label: 'Usage émojis',
-                            options: [
-                              { value: 'aucun', label: 'Aucun' },
-                              { value: 'modéré', label: 'Modéré' },
-                              { value: 'fréquent', label: 'Fréquent' }
-                            ]
-                          },
-                          {
-                            key: 'formality',
-                            label: 'Formalité',
-                            options: [
-                              { value: 'formel', label: 'Formel (vous)' },
-                              { value: 'familier', label: 'Familier (tu)' },
-                              { value: 'très_familier', label: 'Très familier' }
-                            ]
-                          }
-                        ].map((trait) => (
-                          <div key={trait.key}>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                              {trait.label}
-                            </label>
-                            <select
-                              value={messagesConfig.personality[trait.key]}
-                              onChange={(e) => {
-                                setMessagesConfig(prev => ({
-                                  ...prev,
-                                  personality: {
-                                    ...prev.personality,
-                                    [trait.key]: e.target.value
-                                  }
-                                }));
-                                setHasUnsavedChanges(true);
-                              }}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                            >
-                              {trait.options.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                  </div>
+                )}
+
+                {/* Autres onglets simplifiés pour l'espace */}
+                {activeTab === 'branding' && (
+                  <div className="text-center py-12">
+                    <Image className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-600 mb-2">Configuration Branding</h3>
+                    <p className="text-gray-500">Paramètres du salon et informations de contact</p>
+                  </div>
+                )}
+
+                {activeTab === 'advanced' && (
+                  <div className="text-center py-12">
+                    <Settings className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-600 mb-2">Paramètres Avancés</h3>
+                    <p className="text-gray-500">Notifications intelligentes et horaires</p>
                   </div>
                 )}
                 
-                {/* Onglet Paramètres avancés */}
-                {activeTab === 'advanced' && (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">🔔 Notifications</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {[
-                          { key: 'soundEnabled', label: 'Sons' },
-                          { key: 'vibrationEnabled', label: 'Vibrations' },
-                          { key: 'desktopNotifications', label: 'Notifications bureau' },
-                          { key: 'emailNotifications', label: 'Notifications email' },
-                          { key: 'smsNotifications', label: 'Notifications SMS' }
-                        ].map((notification) => (
-                          <div key={notification.key} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span className="text-sm font-medium text-gray-700">
-                              {notification.label}
-                            </span>
-                            <label className="relative inline-flex items-center cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={advancedConfig.notifications[notification.key]}
-                                onChange={(e) => {
-                                  setAdvancedConfig(prev => ({
-                                    ...prev,
-                                    notifications: {
-                                      ...prev.notifications,
-                                      [notification.key]: e.target.checked
-                                    }
-                                  }));
-                                  setHasUnsavedChanges(true);
-                                }}
-                                className="sr-only"
-                              />
-                              <div className={`w-11 h-6 rounded-full transition-colors ${
-                                advancedConfig.notifications[notification.key] 
-                                  ? 'bg-purple-600' 
-                                  : 'bg-gray-300'
-                              }`}>
-                                <div className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform ${
-                                  advancedConfig.notifications[notification.key] 
-                                    ? 'translate-x-5' 
-                                    : 'translate-x-0.5'
-                                } mt-0.5`}>
-                                </div>
-                              </div>
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">⏰ Heures d'ouverture</h3>
-                      <div className="space-y-3">
-                        {Object.entries(advancedConfig.schedule.businessHours).map(([day, hours]) => (
-                          <div key={day} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
-                            <div className="w-20 text-sm font-medium text-gray-700 capitalize">
-                              {day === 'monday' ? 'Lundi' :
-                               day === 'tuesday' ? 'Mardi' :
-                               day === 'wednesday' ? 'Mercredi' :
-                               day === 'thursday' ? 'Jeudi' :
-                               day === 'friday' ? 'Vendredi' :
-                               day === 'saturday' ? 'Samedi' : 'Dimanche'}
-                            </div>
-                            
-                            <label className="flex items-center space-x-2">
-                              <input
-                                type="checkbox"
-                                checked={!hours.closed}
-                                onChange={(e) => {
-                                  setAdvancedConfig(prev => ({
-                                    ...prev,
-                                    schedule: {
-                                      ...prev.schedule,
-                                      businessHours: {
-                                        ...prev.schedule.businessHours,
-                                        [day]: {
-                                          ...hours,
-                                          closed: !e.target.checked
-                                        }
-                                      }
-                                    }
-                                  }));
-                                  setHasUnsavedChanges(true);
-                                }}
-                                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                              />
-                              <span className="text-sm text-gray-600">Ouvert</span>
-                            </label>
-                            
-                            {!hours.closed && (
-                              <div className="flex items-center space-x-2">
-                                <input
-                                  type="time"
-                                  value={hours.start}
-                                  onChange={(e) => {
-                                    setAdvancedConfig(prev => ({
-                                      ...prev,
-                                      schedule: {
-                                        ...prev.schedule,
-                                        businessHours: {
-                                          ...prev.schedule.businessHours,
-                                          [day]: {
-                                            ...hours,
-                                            start: e.target.value
-                                          }
-                                        }
-                                      }
-                                    }));
-                                    setHasUnsavedChanges(true);
-                                  }}
-                                  className="px-3 py-1 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-purple-400"
-                                />
-                                <span className="text-gray-500">à</span>
-                                <input
-                                  type="time"
-                                  value={hours.end}
-                                  onChange={(e) => {
-                                    setAdvancedConfig(prev => ({
-                                      ...prev,
-                                      schedule: {
-                                        ...prev.schedule,
-                                        businessHours: {
-                                          ...prev.schedule.businessHours,
-                                          [day]: {
-                                            ...hours,
-                                            end: e.target.value
-                                          }
-                                        }
-                                      }
-                                    }));
-                                    setHasUnsavedChanges(true);
-                                  }}
-                                  className="px-3 py-1 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-purple-400"
-                                />
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">📅 Paramètres rendez-vous</h3>
-                      <div className="grid grid-cols-3 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Durée par défaut (min)
-                          </label>
-                          <input
-                            type="number"
-                            value={advancedConfig.schedule.appointmentDuration}
-                            onChange={(e) => {
-                              setAdvancedConfig(prev => ({
-                                ...prev,
-                                schedule: {
-                                  ...prev.schedule,
-                                  appointmentDuration: parseInt(e.target.value)
-                                }
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            min="15"
-                            max="180"
-                            step="15"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                          />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Temps tampon (min)
-                          </label>
-                          <input
-                            type="number"
-                            value={advancedConfig.schedule.bufferTime}
-                            onChange={(e) => {
-                              setAdvancedConfig(prev => ({
-                                ...prev,
-                                schedule: {
-                                  ...prev.schedule,
-                                  bufferTime: parseInt(e.target.value)
-                                }
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            min="0"
-                            max="60"
-                            step="5"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                          />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Réservation max (jours)
-                          </label>
-                          <input
-                            type="number"
-                            value={advancedConfig.schedule.maxAdvanceBooking}
-                            onChange={(e) => {
-                              setAdvancedConfig(prev => ({
-                                ...prev,
-                                schedule: {
-                                  ...prev.schedule,
-                                  maxAdvanceBooking: parseInt(e.target.value)
-                                }
-                              }));
-                              setHasUnsavedChanges(true);
-                            }}
-                            min="1"
-                            max="365"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -991,9 +529,12 @@ const BabineCustomizationSystem = () => {
           <div className="space-y-6">
             
             {/* Contrôles preview */}
-            <div className="bg-white rounded-2xl shadow-xl border p-4">
-              <h3 className="font-semibold text-gray-800 mb-3">👁️ Aperçu</h3>
-              <div className="flex items-center justify-center space-x-2 mb-4">
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-6">
+              <h3 className="font-bold text-gray-800 mb-4 flex items-center">
+                <Eye className="w-5 h-5 mr-2 text-purple-600" />
+                Aperçu en Temps Réel
+              </h3>
+              <div className="flex items-center justify-center space-x-2 mb-6">
                 {[
                   { key: 'mobile', icon: Smartphone, label: 'Mobile' },
                   { key: 'tablet', icon: Tablet, label: 'Tablette' },
@@ -1002,10 +543,10 @@ const BabineCustomizationSystem = () => {
                   <button
                     key={device.key}
                     onClick={() => setPreviewDevice(device.key)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                       previewDevice === device.key
-                        ? 'bg-purple-100 text-purple-700'
-                        : 'text-gray-600 hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg'
+                        : 'text-gray-600 hover:bg-white/60 border border-gray-200'
                     }`}
                   >
                     <device.icon className="w-4 h-4" />
@@ -1016,131 +557,45 @@ const BabineCustomizationSystem = () => {
             </div>
             
             {/* Preview live */}
-            <div className="bg-white rounded-2xl shadow-xl border p-6">
-              <div className="flex items-center justify-center">
-                <PreviewComponent />
-              </div>
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-6">
+              {PreviewComponent}
             </div>
             
-            {/* Actions rapides */}
-            <div className="bg-white rounded-2xl shadow-xl border p-4">
-              <h3 className="font-semibold text-gray-800 mb-3">⚡ Actions rapides</h3>
-              <div className="space-y-2">
-                <button
-                  onClick={() => {
-                    const config = JSON.stringify({
-                      theme: themeConfig,
-                      branding: brandingConfig,
-                      messages: messagesConfig,
-                      advanced: advancedConfig
-                    }, null, 2);
-                    
-                    const blob = new Blob([config], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'babine-config.json';
-                    a.click();
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Exporter config</span>
-                </button>
-                
-                <button
-                  onClick={() => {
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = '.json';
-                    input.onchange = (e) => {
-                      const inputEl = e.target as HTMLInputElement;
-                      const file = inputEl.files && inputEl.files[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                          try {
-                            const config = JSON.parse(e.target?.result as string);
-                            setThemeConfig(config.theme || themeConfig);
-                            setBrandingConfig(config.branding || brandingConfig);
-                            setMessagesConfig(config.messages || messagesConfig);
-                            setAdvancedConfig(config.advanced || advancedConfig);
-                            setHasUnsavedChanges(true);
-                          } catch (error) {
-                            alert('Erreur lors de l\'import du fichier');
-                          }
-                        };
-                        reader.readAsText(file);
-                      }
-                    };
-                    input.click();
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors"
-                >
-                  <Upload className="w-4 h-4" />
-                  <span>Importer config</span>
-                </button>
-                
-                <button
-                  onClick={() => {
-                    // Reset à la configuration par défaut
-                    setThemeConfig({
-                      primaryColor: '#EC4899',
-                      secondaryColor: '#F97316',
-                      accentColor: '#8B5CF6',
-                      backgroundColor: '#FDF2F8',
-                      textColor: '#1F2937',
-                      successColor: '#10B981',
-                      warningColor: '#F59E0B',
-                      errorColor: '#EF4444',
-                      gradientStyle: 'soft',
-                      borderRadius: 'rounded',
-                      shadowStyle: 'soft'
-                    });
-                    setHasUnsavedChanges(true);
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  <span>Reset par défaut</span>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
         
-        {/* Footer avec sauvegarde */}
-        {hasUnsavedChanges && (
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white border-2 border-yellow-300 rounded-2xl shadow-2xl p-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-yellow-700">
-                <RefreshCw className="w-5 h-5" />
-                <span className="font-medium">Modifications non sauvegardées</span>
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => {
-                    // Annuler les modifications (reload)
-                    window.location.reload();
-                  }}
-                  className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  Annuler
-                </button>
-                <button
-                  onClick={saveConfiguration}
-                  className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all font-medium"
-                >
-                  Sauvegarder maintenant
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
+      
+      {/* CSS Global pour les animations */}
+      <style jsx global>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideOut {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+        
+        .animate-slideIn {
+          animation: slideIn 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
 
 export default BabineCustomizationSystem;
-                

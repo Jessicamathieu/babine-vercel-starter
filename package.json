@@ -1,30 +1,47 @@
 {
   "name": "babine-vercel-starter",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "description": "🌸 Babine - Assistant IA Premium pour Esthetica Spa",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "autoprefixer": "^10.4.21",
+    "critters": "^0.0.25",
     "googleapis": "^132.0.0",
     "lucide-react": "^0.542.0",
-  "next": "^14.2.32",
-  "react": "18.3.1",
-  "react-dom": "18.3.1",
-  "autoprefixer": "^10.4.21",
-  "postcss": "^8.5.6",
-  "tailwindcss": "^4.1.12",
-  "@tailwindcss/postcss": "^4.1.12",
+    "next": "^14.2.32",
+    "postcss": "^8.5.6",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "^4.1.12",
     "twilio": "^5.4.4"
-  },
-  "engines": {
-    "node": ">=18.18"
   },
   "devDependencies": {
     "@types/node": "^20.19.12",
     "@types/react": "^18.3.3",
     "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "keywords": [
+    "spa",
+    "esthetique",
+    "ai",
+    "assistant",
+    "booking",
+    "vercel",
+    "nextjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jessicamathieu/babine-vercel-starter"
   }
 }

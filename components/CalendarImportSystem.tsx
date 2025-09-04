@@ -21,19 +21,13 @@ const CalendarImportSystem = () => {
       email: 'info@estheticaspa.com',
       description: 'Ton calendrier Google principal'
     },
-    { 
-      id: 'esthetica.business@gmail.com', 
-      name: 'Calendrier Esthetica Business',
-      email: 'esthetica.business@gmail.com',
-      description: 'Calendrier professionnel du salon'
-    },
-    { 
-      id: 'jessica.esthetica@outlook.com', 
-      name: 'Calendrier Outlook Jessica',
-      email: 'jessica.esthetica@outlook.com',
-      description: 'Calendrier Outlook (si applicable)'
-    }
-  ];
+      { 
+        id: 'mathieuj787 @gmail.com', 
+        name: 'Calendrier Jessica (Perso)',
+        email: 'mathieuj787@gmail.com',
+        description: 'Calendrier professionnel du salon'
+      }
+    ];
 
   // Simuler l'import des calendriers
   const handleImportCalendars = async () => {
